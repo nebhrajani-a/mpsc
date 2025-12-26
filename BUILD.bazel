@@ -1,0 +1,38 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test", "cc_binary")
+
+cc_library(
+    name = "mpsc_queue",
+    hdrs = ["include/mpsc_queue.hpp"],
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "mpsc_queue_test",
+    size = "medium",
+    srcs = ["tests/mpsc_queue_test.cpp"],
+    deps = [
+        ":mpsc_queue",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "mpsc_queue_adversarial_test",
+    size = "large",
+    srcs = ["tests/mpsc_queue_adversarial_test.cpp"],
+    tags = ["cpu:4"],
+    deps = [
+        ":mpsc_queue",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_binary(
+    name = "mpsc_queue_benchmark",
+    srcs = ["benchmarks/mpsc_queue_benchmark.cpp"],
+    deps = [
+        ":mpsc_queue",
+        "@google_benchmark//:benchmark_main",
+    ],
+)

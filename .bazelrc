@@ -1,0 +1,26 @@
+# C++17 standard
+build --cxxopt=-std=c++17
+
+# Warnings
+build --cxxopt=-Wall
+build --cxxopt=-Wextra
+build --cxxopt=-Wpedantic
+
+# ThreadSanitizer config
+build:tsan --copt=-fsanitize=thread
+build:tsan --linkopt=-fsanitize=thread
+build:tsan --copt=-g
+build:tsan --copt=-O1
+build:tsan --copt=-fno-omit-frame-pointer
+
+# AddressSanitizer config
+build:asan --copt=-fsanitize=address
+build:asan --linkopt=-fsanitize=address
+build:asan --copt=-g
+build:asan --copt=-O1
+build:asan --copt=-fno-omit-frame-pointer
+
+# Optimized build for benchmarks
+build:opt --copt=-O3
+build:opt --copt=-DNDEBUG
+

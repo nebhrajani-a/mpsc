@@ -1,0 +1,18 @@
+# Bazel output directories
+bazel-*
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.o
+*.a
+*.so
+*.dylib
+
+# OS files
+.DS_Store
+Thumbs.db
+
